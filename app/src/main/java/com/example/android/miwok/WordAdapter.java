@@ -2,10 +2,12 @@ package com.example.android.miwok;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -59,6 +61,21 @@ public class WordAdapter extends ArrayAdapter<Word> {
         // Set the text of the defaultTextView to the default translation in currentWord
         defaultTextView.setText(currentWord.getDefaultTranslation());
 
+        // Find the ImageView in the list_item.xml layout
+        ImageView imageView = (ImageView) listItemView.findViewById(R.id.image_view);
+
+        // If the current Word has an image
+        if(currentWord.hasImage()) {
+            // Make sure the ImageView is visible
+            imageView.setVisibility(View.VISIBLE);
+            // Set the source of the ImageView to the Word's image attribute
+            imageView.setImageResource(currentWord.getImageResourceId());
+        } else {
+            // Otherwise set the ImageView's visibility to GONE
+            imageView.setVisibility(View.GONE);
+        }
+
+        // return the listItemView complete with the correct image and text views
         return listItemView;
     }
 }
