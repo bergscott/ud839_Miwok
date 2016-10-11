@@ -2,7 +2,6 @@ package com.example.android.miwok;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,11 +22,11 @@ import java.util.ArrayList;
 public class WordAdapter extends ArrayAdapter<Word> {
 
     /** Color of translations linear layout background */
-    int mColor;
+    int mColorResourceId;
 
-    public WordAdapter(Context context, ArrayList<Word> wordList, int color) {
+    public WordAdapter(Context context, ArrayList<Word> wordList, int colorResourceId) {
         super(context, 0, wordList);
-        mColor = color;
+        mColorResourceId = colorResourceId;
     }
 
     @NonNull
@@ -51,7 +50,8 @@ public class WordAdapter extends ArrayAdapter<Word> {
             listItemView = LayoutInflater.from(getContext()).inflate(
                     R.layout.list_item, parent, false);
             // set the text view linear layout's background color
-            listItemView.findViewById(R.id.translations_linear_layout).setBackgroundResource(mColor);
+            listItemView.findViewById(R.id.translations_linear_layout).
+                    setBackgroundResource(mColorResourceId);
         }
 
         // Get the {@link Word} object located at this position in the list
