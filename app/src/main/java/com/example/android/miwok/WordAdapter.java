@@ -22,9 +22,12 @@ import java.util.ArrayList;
 
 public class WordAdapter extends ArrayAdapter<Word> {
 
+    /** Color of translations linear layout background */
+    int mColor;
 
-    public WordAdapter(Context context, ArrayList<Word> wordList) {
+    public WordAdapter(Context context, ArrayList<Word> wordList, int color) {
         super(context, 0, wordList);
+        mColor = color;
     }
 
     @NonNull
@@ -41,11 +44,14 @@ public class WordAdapter extends ArrayAdapter<Word> {
      */
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        // Check if the existing view is being reused, otherwise inflate the view
+        // Check if the existing view is being reused, otherwise inflate the view and set its
+        // text view linear layout's background color
         View listItemView = convertView;
         if(listItemView == null) {
             listItemView = LayoutInflater.from(getContext()).inflate(
                     R.layout.list_item, parent, false);
+            // set the text view linear layout's background color
+            listItemView.findViewById(R.id.translations_linear_layout).setBackgroundResource(mColor);
         }
 
         // Get the {@link Word} object located at this position in the list

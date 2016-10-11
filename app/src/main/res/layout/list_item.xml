@@ -11,21 +11,19 @@
         tools:src="@drawable/number_one"/>
 
     <LinearLayout
+        android:id="@+id/translations_linear_layout"
         style="@style/ListItemTranslationsLinearLayout"
-        android:background="@color/category_numbers">
+        tools:background="@color/category_numbers">
 
         <TextView
             android:id="@+id/miwok_text_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            style="@style/MiwokTextView"
             tools:text="miwok" />
 
         <TextView
             android:id="@+id/default_text_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            style="@style/DefaultTextView"
             tools:text="translation" />
-
     </LinearLayout>
 
 </LinearLayout>

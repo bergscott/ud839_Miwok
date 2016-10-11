@@ -28,7 +28,7 @@ public class NumbersActivity extends AppCompatActivity {
 
         // create ArrayAdapter that holds list of words
         WordAdapter wordAdapter =
-                new WordAdapter(this, words);
+                new WordAdapter(this, words, R.color.category_numbers);
 
         // retrieve the listView from the xml layout
         ListView listView = (ListView) findViewById(R.id.list);

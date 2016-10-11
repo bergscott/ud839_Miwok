@@ -34,4 +34,7 @@
 
     <!-- Background color for the phrases category -->
     <color name="category_phrases">#16AFCA</color>
+
+    <!-- Text Color for the list item text views -->
+    <color name="list_item_text">#FFFFFF</color>
 </resources>
