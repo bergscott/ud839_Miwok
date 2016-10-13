@@ -56,19 +56,6 @@ public class WordAdapter extends ArrayAdapter<Word> {
                     setBackgroundResource(mColorResourceId);
         }
 
-        // Initialize media player for pronunciation audio
-        final MediaPlayer mediaPlayer = MediaPlayer.create(getContext(), R.raw.color_black);
-
-        // Set onClick listener for translations linear layout to play pronunciation audio
-        LinearLayout translationsLayout = (LinearLayout) listItemView.
-                findViewById(R.id.translations_linear_layout);
-        translationsLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mediaPlayer.start();
-            }
-        });
-
         // Get the {@link Word} object located at this position in the list
         Word currentWord = getItem(position);
 
@@ -95,6 +82,19 @@ public class WordAdapter extends ArrayAdapter<Word> {
             // Otherwise set the ImageView's visibility to GONE
             imageView.setVisibility(View.GONE);
         }
+
+        // Initialize media player for pronunciation audio
+        final MediaPlayer mediaPlayer = MediaPlayer.create(getContext(), R.raw.color_black);
+
+        // Set onClick listener for translations linear layout to play pronunciation audio
+        LinearLayout translationsLayout = (LinearLayout) listItemView.
+                findViewById(R.id.translations_linear_layout);
+        translationsLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mediaPlayer.start();
+            }
+        });
 
         // return the listItemView complete with the correct image and text views
         return listItemView;

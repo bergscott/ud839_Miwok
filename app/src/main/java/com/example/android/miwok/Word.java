@@ -17,6 +17,9 @@ public class Word {
     /** Resource ID for the image that represents the word */
     private int mImageResourceId = NO_IMAGE_PROVIDED;
 
+    /** Resource ID for audio of Miwok pronunciation */
+    private int mAudioResourceId;
+
     /** Constant value that represents no image was provided for this word */
     private static final int NO_IMAGE_PROVIDED = -1;
 
@@ -26,10 +29,12 @@ public class Word {
      * @param defaultTranslation is the word in a language that the user is already familiar with
      *                           (such as English)
      * @param miwokTranslation is the word in the Miwok language
+     * @param audioResourceId is the raw resource ID of the Miwok pronunciation audio file
      */
-    public Word(String defaultTranslation, String miwokTranslation) {
+    public Word(String defaultTranslation, String miwokTranslation, int audioResourceId) {
         mMiwokTranslation = miwokTranslation;
         mDefaultTranslation = defaultTranslation;
+        mAudioResourceId = audioResourceId;
     }
 
     /**
@@ -38,11 +43,14 @@ public class Word {
      * @param defaultTranslation is the word in a language that the user is already familiar with
      *                           (such as English)
      * @param miwokTranslation is the word in the Miwok language
+     * @param audioResourceId is the raw resource ID of the Miwok pronunciation audio file
      * @param imageResourceId is the drawable resource ID of the image associated with the word
      */
-    public Word(String defaultTranslation, String miwokTranslation, int imageResourceId) {
+    public Word(String defaultTranslation, String miwokTranslation, int audioResourceId,
+                int imageResourceId) {
         mMiwokTranslation = miwokTranslation;
         mDefaultTranslation = defaultTranslation;
+        mAudioResourceId = audioResourceId;
         mImageResourceId = imageResourceId;
     }
 
@@ -69,6 +77,12 @@ public class Word {
     public int getImageResourceId() {
         return mImageResourceId;
     }
+
+    /**
+     * Get the resource ID of the Miwok pronunciation audio file
+     * @return resource ID of the Miwok pronunciation audio file
+     */
+    public int getAudioResourceId() { return mAudioResourceId; }
 
     /**
      * Declares if the Word instance has an image
