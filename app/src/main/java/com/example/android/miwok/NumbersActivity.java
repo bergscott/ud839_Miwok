@@ -1,19 +1,24 @@
 package com.example.android.miwok;
 
+import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
 
 public class NumbersActivity extends AppCompatActivity {
 
+    private MediaPlayer mMediaPlayer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.word_list);
 
-        ArrayList<Word> words = new ArrayList<Word>();
+        final ArrayList<Word> words = new ArrayList<Word>();
         words.add(new Word("one", "lutti", R.raw.number_one, R.drawable.number_one));
         words.add(new Word("two", "otiiko", R.raw.number_two, R.drawable.number_two));
         words.add(new Word("three", "tolookosu", R.raw.number_three, R.drawable.number_three));
@@ -35,6 +40,16 @@ public class NumbersActivity extends AppCompatActivity {
 
         // set the adapter to the listView
         listView.setAdapter(wordAdapter);
+
+        // set onItemClickListener to play appropriate pronunciation audio file
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                int audioResourceId = words.get(position).getAudioResourceId();
+                mMediaPlayer = MediaPlayer.create(NumbersActivity.this, audioResourceId);
+                mMediaPlayer.start();
+            }
+        });
 
     }
 }
