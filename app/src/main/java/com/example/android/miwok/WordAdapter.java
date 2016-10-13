@@ -83,8 +83,10 @@ public class WordAdapter extends ArrayAdapter<Word> {
             imageView.setVisibility(View.GONE);
         }
 
+        // Get the resource ID for the proper Miwok pronunciation audio
+        int pronunciationAudioId = currentWord.getAudioResourceId();
         // Initialize media player for pronunciation audio
-        final MediaPlayer mediaPlayer = MediaPlayer.create(getContext(), R.raw.color_black);
+        final MediaPlayer mediaPlayer = MediaPlayer.create(getContext(), pronunciationAudioId);
 
         // Set onClick listener for translations linear layout to play pronunciation audio
         LinearLayout translationsLayout = (LinearLayout) listItemView.
