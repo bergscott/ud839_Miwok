@@ -1,12 +1,14 @@
 package com.example.android.miwok;
 
 import android.content.Context;
+import android.media.MediaPlayer;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -22,7 +24,7 @@ import java.util.ArrayList;
 public class WordAdapter extends ArrayAdapter<Word> {
 
     /** Color of translations linear layout background */
-    int mColorResourceId;
+    private int mColorResourceId;
 
     public WordAdapter(Context context, ArrayList<Word> wordList, int colorResourceId) {
         super(context, 0, wordList);
@@ -53,6 +55,19 @@ public class WordAdapter extends ArrayAdapter<Word> {
             listItemView.findViewById(R.id.translations_linear_layout).
                     setBackgroundResource(mColorResourceId);
         }
+
+        // Initialize media player for pronunciation audio
+        final MediaPlayer mediaPlayer = MediaPlayer.create(getContext(), R.raw.color_black);
+
+        // Set onClick listener for translations linear layout to play pronunciation audio
+        LinearLayout translationsLayout = (LinearLayout) listItemView.
+                findViewById(R.id.translations_linear_layout);
+        translationsLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mediaPlayer.start();
+            }
+        });
 
         // Get the {@link Word} object located at this position in the list
         Word currentWord = getItem(position);
