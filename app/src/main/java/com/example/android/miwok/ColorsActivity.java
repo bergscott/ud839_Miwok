@@ -1,12 +1,18 @@
 package com.example.android.miwok;
 
+import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
 
 public class ColorsActivity extends AppCompatActivity {
+
+    private MediaPlayer mMediaPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -14,7 +20,7 @@ public class ColorsActivity extends AppCompatActivity {
         setContentView(R.layout.word_list);
 
         // initialize the list of Words
-        ArrayList<Word> words = new ArrayList<Word>();
+        final ArrayList<Word> words = new ArrayList<Word>();
         words.add(new Word("red", "weṭeṭṭi", R.raw.color_red, R.drawable.color_red));
         words.add(new Word("green", "chokokki", R.raw.color_green, R.drawable.color_green));
         words.add(new Word("brown", "ṭakaakki", R.raw.color_brown, R.drawable.color_brown));
@@ -35,6 +41,16 @@ public class ColorsActivity extends AppCompatActivity {
 
         // set the adapter to the listView
         listView.setAdapter(wordAdapter);
+
+        // set onItemClickListener to play appropriate pronunciation audio file
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                int audioResourceId = words.get(position).getAudioResourceId();
+                mMediaPlayer = MediaPlayer.create(ColorsActivity.this, audioResourceId);
+                mMediaPlayer.start();
+            }
+        });
 
     }
 }

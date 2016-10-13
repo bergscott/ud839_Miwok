@@ -83,21 +83,6 @@ public class WordAdapter extends ArrayAdapter<Word> {
             imageView.setVisibility(View.GONE);
         }
 
-        // Get the resource ID for the proper Miwok pronunciation audio
-        int pronunciationAudioId = currentWord.getAudioResourceId();
-        // Initialize media player for pronunciation audio
-        final MediaPlayer mediaPlayer = MediaPlayer.create(getContext(), pronunciationAudioId);
-
-        // Set onClick listener for translations linear layout to play pronunciation audio
-        LinearLayout translationsLayout = (LinearLayout) listItemView.
-                findViewById(R.id.translations_linear_layout);
-        translationsLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mediaPlayer.start();
-            }
-        });
-
         // return the listItemView complete with the correct image and text views
         return listItemView;
     }
